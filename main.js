@@ -22,14 +22,12 @@ function initMap() {
             infoWindow.open(map, marker);
         })
     }
-    // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-// console.log(pos);
             createInfoWindow(pos);
             map.setCenter(pos);
             console.log(map.getCenter());
@@ -42,7 +40,7 @@ function initMap() {
             service.textSearch(request, callback);
             function callback(results, status) {
                 console.log(results);
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
                         var place = results[i];
                         createMarker(place);
@@ -65,10 +63,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
-</script>
-<!--- google maps script-->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7AO7D6VjWNKSVCPztMggEPph3J97hrms&callback=initMap&libraries=places">
-    </script>
-    </body>
-    </html>
